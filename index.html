@@ -1,60 +1,113 @@
 <!DOCTYPE html>
-<html lang="ja">
-  <head>
-    <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+<html>
+<head>
+<title>dezainnseisaku.com</title>
 
-    <!-- Bootstrap 4のCSS -->
-    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-alpha.6/css/bootstrap.min.css" integrity="sha384-rwoIResjU2yc3z8GV/NPeZWAv56rSmLldC3R/AZzGRnGxQQKnKkoFVhFQhNUwEyJ" crossorigin="anonymous">
+<script type="text/javascript">
+<!--
 
-    <!-- 日本語フォント用の設定 -->
-    <link href="https://fonts.googleapis.com/earlyaccess/notosansjapanese.css" rel="stylesheet" />
-    <style>
-      body {
-        font-family: -apple-system, BlinkMacSystemFont, "Helvetica Neue", "Noto Sans Japanese", "ヒラギノ角ゴ ProN W3", Hiragino Kaku Gothic ProN, Arial, Meiryo, sans-serif;
-      }
-    </style>
+function keisan(){
 
-    <!-- タイトル -->
-    <title>テクノロジー（藤原）サンプル</title>
-  </head>
+	// 設定開始
 
-  <body>
-    <div class="container">  <!-- Bootstrap 4用のタグ -->
+	var tax = 8; // 消費税率
 
-      <!-- 自分用のHTMLをここに書く -->
+	// 商品1
+	var price1 = document.form1.goods1.selectedIndex * 500; // 単価を設定
+	document.form1.field1.value = price1; // 小計を表示
 
-      <h1>iso, world!</h1>
+	// 商品2
+	var price2 = document.form1.goods2.selectedIndex * 1000; // 単価を設定
+	document.form1.field2.value = price2; // 小計を表示
 
-      <p>これはHTMLのサンプルです。</p>
+	// 商品3
+	var price3 = document.form1.goods3.selectedIndex * 3000; // 単価を設定
+	document.form1.field3.value = price3; // 小計を表示
 
-      <h2>入力</h2>
-      <form name="mainForm">
-        <div class="form-group">
-          <label for="input1">入力1</label>
-          <input id="input1" class="form-control" type="text" onchange="answer()"/>
-        </div>
+	// 合計を計算
+	var total1 = price1 + price2 + price3;
 
-        <div class="form-group">
-          <label for="input2">入力2</label>
-          <input id="input2" class="form-control" type="text" onchange="answer()"/>
-        </div>
-      </form>
+	// 設定終了
 
-      <h2>出力</h2>
-      <p id="output">>ここに出力したい</p>
-       
 
-      <!-- 自分用のHTMLはここまで -->
+	document.form1.field_total1.value = total1; // 合計を表示
 
-    </div>  <!-- Bootstrap 4用のタグ -->
+	var tax2 = Math.round((total1 * tax) / 100);
+	document.form1.field_tax.value = tax2; // 消費税を表示
 
-    <!-- 外部のJavaScriptライブラリ -->
-    <script src="https://code.jquery.com/jquery-3.1.1.slim.min.js" integrity="sha384-A7FZj7v+d/sdmMqp/nOQwliLvUsJfDHW+k9Omg/a/EheAdgtzNs3hpfag6Ed950n" crossorigin="anonymous"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/tether/1.4.0/js/tether.min.js" integrity="sha384-DztdAPBWPRXSA/3eYEEUWrWCy7G5KFbe8fFjk5JAIxUYHKkDx6Qin1DkWx51bBrb" crossorigin="anonymous"></script>
-    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-alpha.6/js/bootstrap.min.js" integrity="sha384-vBWWzlZJ8ea9aCX4pEW3rVHjgjt7zpkNpZk+02D9phzyeVkE+jo0ieGizqPLForn" crossorigin="anonymous"></script>
-  
-     <script src="main.js"></script>
-  
-  </body>
+	document.form1.field_total2.value = total1 + tax2; // 税込合計を表示
+
+}
+
+// --> 
+</script> 
+
+</head>
+<body>
+
+<form action="#" name="form1">
+
+<table border="1" style="background-color: #ffffff;">
+<tr>
+<th>商品名</th>
+<th>単価</th>
+<th>数量</th>
+<th>金額</th>
+</tr>
+<tr>
+<td>お菓子</td>
+<td align="right">500円</td>
+<td><select name="goods1" onChange="keisan()">
+<option>0</option>
+<option>1</option>
+<option>2</option>
+<option>3</option>
+<option>4</option>
+<option>5</option>
+</select></td>
+<td><input type="text" name="field1" size="8" value="0"> 円</td>
+</tr>
+<tr>
+<td>焼きそば</td>
+<td align="right">1,000円</td>
+<td><select name="goods2" onChange="keisan()">
+<option>0</option>
+<option>1</option>
+<option>2</option>
+<option>3</option>
+<option>4</option>
+<option>5</option>
+</select></td>
+<td><input type="text" name="field2" size="8" value="0"> 円</td>
+</tr>
+<tr>
+<td>ゲーム</td>
+<td align="right">3,000円</td>
+<td><select name="goods3" onChange="keisan()">
+<option>0</option>
+<option>1</option>
+<option>2</option>
+<option>3</option>
+<option>4</option>
+<option>5</option>
+</select></td>
+<td><input type="text" name="field3" size="8" value="0"> 円</td>
+</tr>
+<tr>
+<td align="right" colspan="3">合計</td>
+<td><input type="text" name="field_total1" size="8" value="0"> 円</td>
+</tr>
+<tr>
+<td align="right" colspan="3">消費税</td>
+<td><input type="text" name="field_tax" size="8" value="0"> 円</td>
+</tr>
+<tr>
+<td align="right" colspan="3"><strong>税込合計</strong></td>
+<td><input type="text" name="field_total2" size="8" value="0"> 円</td>
+</tr>
+</table>
+
+</form>
+
+</body>
 </html>
